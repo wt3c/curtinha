@@ -102,3 +102,21 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+# #PyCharm/VIM/VSCode
+.idea
+.ropeproject
+.idea/
+.ropeproject/
+/nbproject/private/
+.vscode/
+
+
+#Mkvirtual
+bin/
+etc/
+include/
+lib/
+lib64/
+share/
+
