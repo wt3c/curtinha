@@ -122,4 +122,5 @@ share/
 
 # Settings
 settings.py
+curta/settings.py
 
