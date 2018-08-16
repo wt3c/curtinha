@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>..:: Login ::..</title>
+</head>
+<body>
+é nos
+
+<div class="container">
+    <form method="POST" accept-charset="utf-8" action=".">
+        {% csrf_token %}
+
+        {{ form.as_p }}
+        <input type="submit" name="login" value="login">
+        <input type="submit" name="logout" value="logout">
+
+
+
+        <p><strong>-- OU --</strong></p>
+        <a href="{% url 'social:begin' 'google-oauth2' %}">Login with Google</a><br>
+
+    </form>
+</div>
+
+</body>
+</html>
