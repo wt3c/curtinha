@@ -120,3 +120,6 @@ lib/
 lib64/
 share/
 
+# Settings
+settings.py
+
