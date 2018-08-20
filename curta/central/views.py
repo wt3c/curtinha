@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 def homepage(request):
     return render(request, 'central/index.html')
 
-
+# TESTE
 def login(request):
     if request.method == 'POST':
         form = AuthenticationForm(data=request.POST)
