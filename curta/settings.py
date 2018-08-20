@@ -26,7 +26,7 @@ SECRET_KEY = '@1ih7z8n($b*3u4uggna+@azpzz8ut9ly%78zi1m=if^p#__cj'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['curtinha.herokuapp.com']
+ALLOWED_HOSTS = ['curtinha.herokuapp.com', '127.0.0.1']
 
 # Application definition
 
@@ -52,6 +52,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
     'social_django.middleware.SocialAuthExceptionMiddleware',  # social auth
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'curta.urls'
@@ -89,8 +90,8 @@ LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
 LOGIN_REDIRECT_URL = 'homepage'
 
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = ''
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'TESTE'
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '995274738123-sv48bobim7bsl76hif6h0183fa87ju3k.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'Qoft0pcK9vylrIFJeESid_S_'
 
 WSGI_APPLICATION = 'curta.wsgi.application'
 
@@ -150,4 +151,6 @@ STATICFILES_DIRS = (
     os.path.join(PROJECT_ROOT, 'static'),
 )
 
-STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+print(PROJECT_ROOT, '*'*50)
