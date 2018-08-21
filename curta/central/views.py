@@ -3,8 +3,12 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login as auth_login, logout as auth_logout
 from django.contrib.auth.decorators import login_required
 
-@login_required(login_url='/login/')
+# @login_required(login_url='/login/')
 def homepage(request):
+    print(request.user.email)
+
+    if request.method
+
     return render(request, 'central/index.html')
 
 # TESTE

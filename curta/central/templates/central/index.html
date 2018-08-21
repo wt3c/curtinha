@@ -2,20 +2,24 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
     <title>Curtinhas</title>
 </head>
 <body>
 
-<h1>CURTINHAS</h1>
+<form method="POST" accept-charset="utf-8" action=".">
+    <div class="container">
+        {% csrf_token %}
+
+        <div class="row">
+
+        </div>
 
 
-{% block content %}
-
-    <h2>Homepage</h2>
-    <p>Hello {{ user.username }}</p>
-    <p>Hello {{ user.id }}</p>
-
-{% endblock %}
-
+    </div>
+</form>
 </body>
 </html>
