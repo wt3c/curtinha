@@ -20,7 +20,8 @@ from curta.central import views as views_central
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    re_path('^$', views_central.homepage, name='homepage'),
+    # re_path('^$', views_central.homepage, name='homepage'),
+    re_path('^$', views_central.Homepage.as_view(), name='homepage'),
     re_path('^login/$', views_central.login, name='login'),
     re_path('^logout/$', views_central.logout, name='logout'),
     re_path('^auth/', include('social_django.urls', namespace='social')),
