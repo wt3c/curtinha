@@ -21,7 +21,22 @@
         </div>
 
 
+        <div class="row">
+            {{ form.url_curta }}
+
+        </div>
+        <br>
+
+        <input class="btn btn-outline-success" type="submit" name="enviar" value="Enviar">
+
+        {% for i in curta %}
+            <p>{{ i.url_curta }}</p>
+        {% endfor %}
+
+
     </div>
 </form>
+
+
 </body>
 </html>

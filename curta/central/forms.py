@@ -1,6 +1,32 @@
 from django import forms
+from django.contrib.auth.models import User
+from random import choice
+from string import ascii_letters, digits
+
 from .models import Curtinha
+
 
 class CurtinhaForm(forms.Form):
     url_original = forms.URLField()
-    url_curta = forms.URLField(max_length=50)
+    url_curta = forms.URLField(max_length=50,)
+
+    def save(self, request, owner, prefixo_url):
+
+        print(request['url_original'], '@@@@@@@@@@@@@@@@@@@@@@@@@@@@')
+
+        owner = User.objects.get(pk=owner)
+
+        alpha = ascii_letters + digits
+
+        # 127.0.0.1/c/45s45i
+        # "".join([chr(choice(range(48, 122))) for x in range(6)])
+
+        prefixo = prefixo_url
+        sufixo = "".join([choice(alpha) for x in range(6)])
+        url_curta = str(prefixo + sufixo)
+
+        Curtinha.objects.create(
+            owner=owner,
+            url_original=request['url_original'],
+            url_curta=url_curta
+        )
