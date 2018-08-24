@@ -25,5 +25,6 @@ urlpatterns = [
     re_path('^login/$', views_central.login, name='login'),
     re_path('^logout/$', views_central.logout, name='logout'),
     re_path('^auth/', include('social_django.urls', namespace='social')),
+    re_path(r'^c/', views_central.redirect_url, name='redirecionar'),
 
 ]

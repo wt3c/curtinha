@@ -4,57 +4,40 @@ from django.views import View
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login as auth_login, logout as auth_logout
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, AnonymousUser
 
 from .models import Curtinha
 from .forms import CurtinhaForm
 
 
 # @login_required(login_url='/login/')
-# def homepage(request):
-#     print(request.user.email)
-#
-#     user = request.user
-#     curtas = Curtinha.objects.filter(owner__email=user.email)
-#
-#     form = CurtinhaForm(curtas)
-#
-#     return render(request, 'central/index.html', {'form': CurtinhaForm()})
-
-
 class Homepage(View):
 
     def get_object(self, request, *args, **kwargs):
         user = self.request.user
-
-        # print('#'*50)
-        # print(user.email)
-        # print('#'*50)
-
-        curtas = Curtinha.objects.filter(owner__email=user.email)
-        print("&" * 50)
-        print(curtas)
-        print("&" * 50)
+        curtas = Curtinha.objects.filter(owner__email=user.email).order_by('-pk')
 
         return curtas
 
     def get(self, request, *args, **kwargs):
-        curtas = self.get_object(self.request)
-        form = CurtinhaForm(curtas)
+        print(self.request.user, "@@@@@@@@@@@")
 
-        return render(request, 'central/index.html', {'form': CurtinhaForm(), 'curta': curtas})
+        print(self.request == AnonymousUser(),'%'*50)
+
+        if not self.request == AnonymousUser():
+            curtas = self.get_object(self.request)
+            return render(request, 'central/index.html', {'form': CurtinhaForm(), 'curta': curtas})
+        else:
+            return render(request, 'central/login.html', {'form': AuthenticationForm()})
 
     def post(self, request, *args, **kwargs):
-        # print(request.POST, '*'*50, self.request.user.pk, '$'*50)
-        #
 
         form = CurtinhaForm(self.request.POST)
 
         if form.is_valid():
-
             user = self.request.user.pk
 
-            prefixo_url = 'http://127.0.0.1/c/'
+            prefixo_url = 'http://127.0.0.1:8000/c/'
 
             form.save(self.request.POST, owner=user, prefixo_url=prefixo_url)
 
@@ -81,4 +64,13 @@ def login(request):
 
 def logout(request):
     auth_logout(request)
-    return Homepage(request)
+    return render(request, 'central/login.html', {'form': AuthenticationForm()})
+
+
+def redirect_url(request):
+    print(request.get_full_path(), "CHEGOUUUUUUUUUU")
+    url = 'http://127.0.0.1:8000' + request.get_full_path()
+
+    curta = Curtinha.objects.get(url_curta=url)
+
+    return HttpResponseRedirect(str(curta.url_original))

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
 
@@ -8,35 +9,39 @@
 
     <title>Curtinhas</title>
 </head>
+
 <body>
+<div class="container">
+    <form method="POST" accept-charset="utf-8" action=".">
 
-<form method="POST" accept-charset="utf-8" action=".">
-    <div class="container">
         {% csrf_token %}
-        <h1>TESTE</h1>
+        <div class="card" style="width: 80%;">
 
-        <div class="row">
-            {{ form.url_original }}
+            <div class="card-body">
+                <label for="form.url_original" class="form-check-label" role="label">URL ORIGINAL: </label>
+                {{ form.url_original }}
+                <br>
+                <input class="btn btn-outline-success float-right" type="submit" name="enviar" value="Encurtar">
+
+            </div>
 
         </div>
+    </form>
+    <br>
 
-
-        <div class="row">
-            {{ form.url_curta }}
-
-        </div>
-        <br>
-
-        <input class="btn btn-outline-success" type="submit" name="enviar" value="Enviar">
-
+    <div class="row">
         {% for i in curta %}
-            <p>{{ i.url_curta }}</p>
+            <div class="col-sm-6">
+                <p><a href={{ i.url_original }}>{{ i.url_original }}</a></p>
+            </div>
+
+            <div class="col-sm-6">
+                <p><a href={{ i.url_curta }}>{{ i.url_curta }}</a></p>
+            </div>
+
         {% endfor %}
-
-
     </div>
-</form>
 
-
+</div>
 </body>
 </html>

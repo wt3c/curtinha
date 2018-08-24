@@ -7,13 +7,11 @@ from .models import Curtinha
 
 
 class CurtinhaForm(forms.Form):
-    url_original = forms.URLField()
-    url_curta = forms.URLField(max_length=50,)
+    url_original = forms.URLField(widget=forms.TextInput(attrs={'class': "form-control"}))
+    url_curta = forms.URLField(max_length=50, required=False, widget=forms.TextInput(attrs=
+                                                                    {'class': "float-right"}) )
 
     def save(self, request, owner, prefixo_url):
-
-        print(request['url_original'], '@@@@@@@@@@@@@@@@@@@@@@@@@@@@')
-
         owner = User.objects.get(pk=owner)
 
         alpha = ascii_letters + digits
