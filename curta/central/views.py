@@ -20,15 +20,12 @@ class Homepage(View):
         return curtas
 
     def get(self, request, *args, **kwargs):
-        print(self.request.user, "@@@@@@@@@@@")
 
-        print(self.request == AnonymousUser(),'%'*50)
-
-        if not self.request == AnonymousUser():
+        if not self.request.user.is_anonymous:
             curtas = self.get_object(self.request)
             return render(request, 'central/index.html', {'form': CurtinhaForm(), 'curta': curtas})
         else:
-            return render(request, 'central/login.html', {'form': AuthenticationForm()})
+            return render(request, 'central/index.html', {'form': CurtinhaForm()})
 
     def post(self, request, *args, **kwargs):
 
@@ -37,7 +34,8 @@ class Homepage(View):
         if form.is_valid():
             user = self.request.user.pk
 
-            prefixo_url = 'http://127.0.0.1:8000/c/'
+            url = request.get_raw_uri()
+            prefixo_url = url + 'c/'
 
             form.save(self.request.POST, owner=user, prefixo_url=prefixo_url)
 
@@ -68,9 +66,7 @@ def logout(request):
 
 
 def redirect_url(request):
-    print(request.get_full_path(), "CHEGOUUUUUUUUUU")
-    url = 'http://127.0.0.1:8000' + request.get_full_path()
-
+    url = request.get_raw_uri()
     curta = Curtinha.objects.get(url_curta=url)
 
     return HttpResponseRedirect(str(curta.url_original))
