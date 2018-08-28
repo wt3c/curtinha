@@ -8,11 +8,14 @@ from .models import Curtinha
 
 class CurtinhaForm(forms.Form):
     url_original = forms.URLField(widget=forms.TextInput(attrs={'class': "form-control"}))
-    url_curta = forms.URLField(max_length=50, required=False, widget=forms.TextInput(attrs=
-                                                                    {'class': "float-right"}) )
+    url_curta = forms.URLField(max_length=50, required=False, widget=forms.TextInput(attrs={'class': "float-right"}))
 
     def save(self, request, owner, prefixo_url):
-        owner = User.objects.get(pk=owner)
+
+        try:
+            owner = User.objects.get(pk=owner)
+        except User.DoesNotExist:
+            owner = None
 
         alpha = ascii_letters + digits
 

@@ -11,6 +11,18 @@
 </head>
 
 <body>
+
+<div class="pos-f-t">
+    <nav class="navbar navbar-dark bg-dark">
+        <ol class="navbar navbar-dark bg-dark">
+            <li class="nav-item nav-link"><a href="{% url 'social:begin' 'google-oauth2' %}">Login with Google</a></li>
+            <li class="nav-item nav-link"><a href="/logout">Logout</a></li>
+        </ol>
+    </nav>
+</div>
+
+<br>
+
 <div class="container">
     <form method="POST" accept-charset="utf-8" action=".">
 
@@ -41,6 +53,11 @@
 
         {% endfor %}
     </div>
+
+
+{% load static %}
+<img src="{% static "teste.jpg" %}" alt="My image">
+
 
 </div>
 </body>
