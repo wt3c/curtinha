@@ -121,6 +121,4 @@ lib64/
 share/
 
 # Settings
-settings.py
-curta/settings.py
-
+.env
