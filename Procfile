@@ -1,1 +1,1 @@
-web: gunicorn curta.wsgi --log-file -
+web: gunicorn curta.wsgi
