@@ -121,4 +121,4 @@ lib64/
 share/
 
 # Settings
-# .env
+.env
