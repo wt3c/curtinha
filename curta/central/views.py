@@ -48,6 +48,13 @@ class Homepage(View):
 
 
 def login(request):
+    """
+    Acabei não usando a tela de login pois achei mais pratico usar a API de login do Google
+
+    :param request:
+    :return:
+    """
+
     if request.method == 'POST':
         form = AuthenticationForm(data=request.POST)
 
