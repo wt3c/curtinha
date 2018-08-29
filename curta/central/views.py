@@ -53,7 +53,7 @@ def login(request):
 
         if form.is_valid():
             auth_login(request, form.get_user())
-            return redirect('/')
+            return redirect('central/index.html')
         else:
             return render(request, 'central/login.html', {'form': form})
     else:
